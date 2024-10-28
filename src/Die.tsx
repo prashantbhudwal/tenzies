@@ -1,6 +1,12 @@
-export function Die({ value }: { value: number }) {
+type DieProps = React.HTMLAttributes<HTMLDivElement> & {
+  value: number;
+  holdDie: (id: string) => void;
+  id: string;
+};
+
+export function Die({ value, id, holdDie, ...props }: DieProps) {
   return (
-    <div className="w-16 h-16 bg-slate-400 rounded-md flex items-center justify-center">
+    <div {...props} onClick={() => holdDie(id)}>
       <h1 className="text-xl font-bold">{value}</h1>
     </div>
   );
